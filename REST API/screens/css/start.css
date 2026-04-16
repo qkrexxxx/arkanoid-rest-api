@@ -1,0 +1,101 @@
+/************* CONTENT *************/
+
+#start {
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: start;
+    height: 100%; width: 100%;
+}
+#start .content { display: flex; flex-direction: row; flex-grow: 1; width: 100%; align-items: start;}
+#start .score { display: flex; flex-direction: column; align-items: center; padding: 0 4vw; }
+
+/************* SHIP *************/
+
+#start .ship {
+    width: 100%; height: 100%;
+    display: flex; align-items: start;
+    padding: 6vw 2vw;
+    position: relative /* aby sa kocky animovali odtialto */;
+}
+#start .ship img {
+    object-fit: contain; /* to freeze image aspect ratio */
+    width: 100%;
+    filter: blur(0); transform: translate(0, 0); /* tieto properties animujeme */
+}
+
+@keyframes SHIP-SHAKE {
+    25% { transform: translate(5px, 5px); }
+    50% {filter: blur(2px); }
+    75% { transform: translate(-5px, -5px); }
+}
+
+@keyframes PADDLE-HIT { /* might not work with the filter bc it's the img that's on top */
+    25% { transform: translate(10px, 10px); }
+    50% {filter: blur(5px); }
+    75% { transform: translate(-10px, -10px); }
+}
+
+#start.animate-background .ship img { animation: PADDLE-HIT ease-in-out 0.35s; } /* musi to byt bricks kedze sa to neda priamo animovat na elemente, ktory ma to pozadie */
+#start.animate-ship-shake .ship img { animation: SHIP-SHAKE ease-in-out 0.35s; }
+
+
+
+/************* BRICKS *************/
+
+/* animacie pre kazdu farbu kocky */
+@keyframes BRICK-BLUE {
+  1%   { transform: translate(0, 0) scale(0%) rotate(0); }
+  100% { transform: translate(10vw, -50vh) scale(200%) rotate(calc(10*360deg));}
+}
+
+@keyframes BRICK-GREEN {
+  0%   { transform: translate(0, 0) scale(0%) rotate(0); }
+  100% { transform: translate(-10vw, 50vh) scale(300%) rotate(calc(8*360deg));}
+}
+
+@keyframes BRICK-GREY {
+  0%   { transform: translate(0, 0) scale(0%) rotate(0);}
+  100% { transform: translate(-60vw, -30vh) scale(400%) rotate(calc(10*360deg));}
+}
+
+@keyframes BRICK-PURPLE {
+  0%   { transform: translate(0, 0) scale(0) rotate(0); }
+  100% { transform: translate(60vw, 30vh) scale(200%) rotate(calc(6*360deg));}
+}
+
+@keyframes BRICK-RED {
+  0%   { transform: translate(0, 0) scale(0) rotate(0); }
+  100% { transform: translate(60vw, -50vh) scale(300%) rotate(calc(4*360deg));}
+}
+
+@keyframes BRICK-YELLOW {
+  0%   { transform: translate(0, 0) scale(0) rotate(0); }
+  100% { transform: translate(60vw, 50vh) scale(400%) rotate(calc(2*360deg));}
+}
+
+#bricks { display: grid; grid-template-columns: repeat(6, 1fr); height: fit-content; width: fit-content; margin-top: 0.5rem;}
+#bricks-start { position: absolute; width: 100%; height: 100%; }
+
+.brick {
+    width: 4vw; height: 2vw;
+    background-size: cover !important; background-repeat: no-repeat !important;
+}
+#bricks-start .brick {
+    position: absolute; top: 4vh; right: 20%;
+    transform: scale(0);
+    z-index: 1000;
+}
+
+.brick.blue   { background: url("../../images/brick.blue.png")}
+.brick.green  { background: url("../../images/brick.green.png")}
+.brick.grey   { background: url("../../images/brick.grey.png")}
+.brick.purple { background: url("../../images/brick.purple.png")}
+.brick.red    { background: url("../../images/brick.red.png")}
+.brick.yellow { background: url("../../images/brick.yellow.png")}
+.brick.static { background: url("../../images/brick.yellow.png"); width: 8rem; height: 4rem;}
+
+.brick.blue.animate   { animation: BRICK-BLUE ease-out 2s; }
+.brick.green.animate  { animation: BRICK-GREEN ease-out 2s; }
+.brick.grey.animate   { animation: BRICK-GREY ease-out 2s; }
+.brick.purple.animate { animation: BRICK-PURPLE ease-out 2s; }
+.brick.red.animate    { animation: BRICK-RED ease-out 2s; }
+.brick.yellow.animate { animation: BRICK-YELLOW ease-out 2s; }

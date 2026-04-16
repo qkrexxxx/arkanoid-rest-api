@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OpenLab</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1.0, user-scalable=0"/>
+
+    <!-- Kniznica na komunikaciu s MQTT maklerom -->
+    <script type="text/javascript" src="js/paho-mqtt-min.js"></script>
+
+    <!-- Kaskadne styly pre stranky a hlavny styl -->
+    <link rel="stylesheet" href="css/intro.css"/>
+    <link rel="stylesheet" href="css/start.css"/>
+    <link rel="stylesheet" href="css/win-fail.css"/>
+    <link rel="stylesheet" href="css/arkanoid.css"/>
+</head>
+<body>
+
+<!-- Hviezdne pozadie -->
+<span id="stars_near" class="stars"></span>
+<span id="stars_far" class="stars"></span>
+
+<!-- Uvodna stranka -->
+<div id="intro" class="">
+    <h1 class="title"> Welcome! </h1>
+    <div class="content">
+        <img src="../images/qrcode.png" class="qrcode" alt="qrcode">
+        <div class="status">
+            <h3>Connection Status</h3>
+            <div id="offline" class="">
+                <h2 style="color: orangered; width: fit-content"> offline </h2>
+                <div class="hint">Please check your VPN connection</div>
+            </div>
+            <div id="online" class="hidden">
+                <h2 style="color: limegreen"> online </h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Stranka hrania hry -->
+<div id="start" class="hidden">
+    <h1 class="title">Arkanoid</h1>
+
+    <div class="content">
+        <div class="ship">
+            <img src="../images/ship.png" alt="ship">
+            <div id="bricks-start">
+                <div class="brick blue"></div>
+                <div class="brick green"></div>
+                <div class="brick grey"></div>
+                <div class="brick purple"></div>
+                <div class="brick red"></div>
+                <div class="brick yellow"></div>
+            </div>
+        </div>
+        <div class="score">
+            <h2>SCORE</h2>
+            <div id="bricks"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Stranka vyhry -->
+<div id="win" class="hidden">
+    YOU WON!
+    <img src="../images/paddle.png" class="paddle" alt="paddle">
+    <img src="../images/ball.png" class="ball" alt="ball">
+</div>
+
+<!-- Stranka prehry -->
+<div id="fail" class="hidden">
+    YOU LOST!
+    <img src="../images/paddle.png" class="paddle" alt="paddle">
+    <img src="../images/ball.png" class="ball" alt="ball">
+</div>
+
+<script type="text/javascript" src="js/arkanoid.js"></script>
+
+</body>
+</html>

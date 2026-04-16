@@ -1,0 +1,48 @@
+@font-face { /*ARKANOID FONT RANDOMLY DOWNLOADED FROM THE INTERNET*/
+  font-family: Arkanoid;
+  src: url(../../fonts/arkanoid/Arkanoid.ttf.woff);
+}
+
+:root { display: flex; flex-direction: column; }
+html { background: linear-gradient(#3C39A9, #0000) #112233; background-size: 100vw 100vh; }
+
+h1, h2, h3, h4, h5 { text-shadow: 0 0 0.25em black; margin: 0; line-height: 120%; }
+h1 { font-size: 16vw; }
+h2 { font-size: 8vw; }
+h3 { font-size: 4vw; }
+
+body {
+    color: white;
+    font-family: Arkanoid, serif;
+    overflow: hidden !important;
+    margin: 0;
+    height: 100vh;
+
+    display: flex; flex-direction: column; align-items: start; justify-content: center;
+}
+
+@keyframes move_stars {
+    100% {transform: translate(-40vw, 0)}
+}
+
+.stars {
+    position: absolute;
+    z-index: -1;
+    width: 140vw;
+    height: 100vh;
+    background: url(../../images/stars.png) repeat;
+}
+
+#stars_near {
+    background-size: 40vw;
+    animation: move_stars 60s linear infinite;
+}
+
+
+#stars_far {
+    background-size: 20vw;
+    animation: move_stars 20s linear infinite;
+}
+
+.hidden { display: none !important; }
+.title { padding: 1rem 0 1rem 0; }

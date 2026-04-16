@@ -1,0 +1,76 @@
+/* text sa najprv zobrazi z opacity 0 na 1 a cely cas meni velkost aj farbu */
+/* keyframes by malo byt v css PRED jeho pridelenim k elementu */
+@keyframes text {
+  0%   { opacity: 0; font-size: 8px; }
+  25%  { opacity: 1; font-size: 1000vh; }
+  60%  { opacity: 1; font-size: 20vh; }
+}
+
+@keyframes text_win {
+  0%   { color: #112233; }
+  25%  { color: white; }
+  60%  { color: yellow; }
+  100% { color: gold; }
+}
+
+@keyframes text_fail {
+  0%   { color: #112233; }
+  25%  { color: orange; }
+  60%  { color: darkred; }
+  100% { color: orangered; }
+}
+
+/*vozik ide postupne zo stredu-dolava-do stredu-doprava-do stredu (on repeat)*/
+@keyframes move_paddle {
+    25% { transform: translate(-50px, 0); }
+    75% { transform: translate(50px, 0); }
+}
+
+/*lopticka skace dole-hore-dole (on repeat)*/
+@keyframes move_ball {
+    50% { transform: translate(0, -100px); }
+}
+
+/* pociatocny a koncovy stav animacie */
+#win, #fail {
+    width: 100vw; height: 100vh;
+    font-weight: bold;
+    white-space: nowrap;
+    margin: 0;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10vh;
+    overflow: hidden !important;
+
+    /* properties, ktore ideme animovat */
+    opacity: 1;
+    font-size: 25vh;
+}
+
+/* aj farbu textu animujeme */
+#win {
+    color: gold;
+    animation: text 1.5s, text_win 1.5s;
+}
+
+#fail {
+    color: orangered;
+    animation: text 1.5s, text_fail 1.5s;
+}
+
+.paddle {
+    position: absolute;
+    right: 150px;
+    bottom: 80px;
+    animation: move_paddle 1s infinite;
+}
+
+.ball {
+    position: absolute;
+    right: 190px;
+    bottom: 100px;
+    animation: move_ball 0.5s infinite;
+}
